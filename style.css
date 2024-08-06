@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*{
+    box-sizing: border-box;
+} /*apply to the universal selector (* - everything) a box sizing property and set it border box, so if we add any padding or border to an element, it doesn't effect the width of it */
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #333;
+    color: #222;
+    overflow-x: hidden; /*it hides the scroll bar on the x exis (horizontally), but you can scroll vertically*/
+    margin: 0;
+}
+
+.container {
+    background-color: #fafafa;
+    transform-origin: top left; /*the rotating point will be from the top left. Without this it starts from the middle*/
+    transition: transform 0.5s linear; /*transition added to the rotation*/
+    width: 100vw; /*it takes 100% of space horizontally*/
+    min-height: 100vh;
+    padding: 50px;
+    
+}
+
+.container.show-nav {
+    transform: rotate(-20deg); /*rotate the div by 20degrees*/
+}
+
+.circle-container /*space around the buttons and the circle around them*/ {
+    position: fixed;
+    top:-100px; /*it moves the elements from the top*/
+    left: -100px;
+    /*border: 2px solid red; */ /*to see the borders of space around the circle and the buttons*/
+}
+
+.circle /*circle around the buttons*/ {
+    background-color: #ff7979;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%; /*makes the element round*/
+    position: relative;
+    transition: transform 0.5s linear;
+    /*border: 2px solid blue; */ /*to see the borders of the circle around the buttons*/
+}
+
+.container.show-nav .circle{
+    transform: rotate(-70deg);/*when the container has the show-nav, the circle will rotate -70deg to show the x button*/
+} 
+
+.circle button /*the buttons inside the circle*/{
+    cursor: pointer; /*add the ittl hand when you go with the mouse on top of the button*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100px;
+    background: transparent; 
+    border:0;/*to remove the borders of the buttons*/
+    font-size: 26px;
+    color: #fff;
+}
+
+.circle button:focus {
+    outline: none; /*remove the lines around the button when in focus*/
+}
+
+.circle button#open /*the button with an id of open*/{
+    left: 60%; /*the open button has been moved 60% from the left, inside the circle as the buttun has an absolute position relative to the circle*/
+}
+
+.circle button#close {
+    top: 60%; 
+    transform: rotate(90deg); /*the button has a rectangular shape (not visible) with a height of 100px, this will rotate it even if it's not visible as the icon is an x and by moving of 90deg it doesn't change the way it looks*/
+    transform-origin: top left;
+}
+
+.container.show-nav + nav li /*when the container has the show-nav, we want to take the nav li and apply the below code*/ {
+    transform: translateX(0); /*bring the nav li to their original place*/
+    transition-delay: 0.3s;
+}
+
+nav {
+    position: fixed;
+    bottom: 40px;
+    left: 0;
+    z-index: 100; /*to put the nav on top*/
+}
+
+nav ul {
+    list-style-type: none;  /*remove the bullet point*/
+    padding-left: 30px;
+}
+
+nav ul li {
+    text-transform: uppercase;
+    color: #fff;
+    margin: 40px 0; /*top bottom 40px destra sinistra 0*/
+    transform: translateX(-100%);/*it moves horizontally and hide the elements for their initial state*/
+    transition: tranform 0.4s ease-in;
+}
+
+nav ul li i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+nav ul li + li /*it targets the second element of the list*/{
+    margin-left: 15px;
+    transform: translateX(-150%); /*it moves horizontally and hide the elements for their initial state*/
+}
+
+nav ul li + li +li /*it targets the second element of the list*/{
+    margin-left: 30px;
+    transform: translateX(-200%); /*it moves horizontally and hide the elements for their initial state*/
+}
+
+.content img {
+    max-width: 100%; /*fix the sizing of the image */
+}
+
+.content {
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.content h1 {
+    margin: 0; 
+}
+
+.content small {
+    color: #555;
+    font-style: italic;
+}
+
+.content p {
+    color: #333;
+    line-height: 1.5; /*space between the lines*/
+}
